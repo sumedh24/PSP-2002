@@ -117,10 +117,68 @@
 	    </div>
 	  </div>
     </nav>
-    
+    <style>
+		.contain {
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  height: 100px;
+		  border: 3px solid navy; 
+		  font-size: 30px;
+		}
+
+		
+
+		.btn3{
+			border-radius: 12px;
+		font-size: 20px;}
+
+
+
+	html {
+  scroll-behavior: smooth;
+}
+
+	.to-top {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color:#ffffff;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top.active {
+  bottom:32px;
+  pointer-events: auto;
+  opacity:1;
+}
+
+
+		</style>
 
 	<h2 style='text-align:center' >Paintings</h2>
-	<div class="container-fluid my-5 px-5" >
+	<div class="container my-3" >
+
+		<div class="contain">
+			<br>
+			<a href="{% url 'addpainting' %}"class="btn btn-warning btn3"> Add Painting </a>
+		</div>
+
+		<div class="container" style="align-items: center;">
+			<br>
+			<i><strong>Note : </strong> Click on the image to see the painting</i>
+		</div>
 
 		<div class="row">
 			{% for painting in painting %}
@@ -161,17 +219,13 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<br>
-		<strong>Note : </strong> Click on the image to see the painting
-	</div>
+	
 	
 	
 
-	<div class="container">
-        <br>
-        <a href="{% url 'addpainting' %}"class="btn btn-warning"> Add Painting </a>
-    </div>
+	<a href="#" class="to-top">
+		<i class="fas fa-chevron-up">^</i>
+	  </a>
 	
 	
 	
@@ -196,5 +250,18 @@
 		
       } 
 	</script>
+
+
+<script>
+	const toTop = document.querySelector(".to-top");
+
+window.addEventListener("scroll", () => {
+if (window.pageYOffset > 100) {
+toTop.classList.add("active");
+} else {
+toTop.classList.remove("active");
+}
+})
+</script>
 </body>
 </html>

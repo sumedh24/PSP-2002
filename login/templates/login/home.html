@@ -48,10 +48,14 @@
 		<div class="welcome-text">
 			<h1>
 				दर्पण : <span>The Art Junction</span></h1>
-			<button onclick="document.getElementById('id01').style.display='block'" class="nav-link text-light"
-				style="width:auto;" href="/login/">Login</button>
-				<button onclick="document.getElementById('id02').style.display='block'" class="nav-link text-light"
+				
+					<button id="b1" onclick="document.getElementById('id01').style.display='block'" class="nav-link text-light"
+				style="width: auto;" href="/login/">Login</button>
+
+				<button id="b2" onclick="document.getElementById('id02').style.display='block'" class="nav-link text-light"
 				style="width:auto;">Register</button>
+				
+			
 			<!-- <a class="nav-link text-light" href="/login/">Login</a>
 			<a class="nav-link text-light" href="/register">Register</a> -->
 		</div>
@@ -71,6 +75,10 @@
 		.wrapper {
 			width: 1170px;
 			margin: auto;
+		}
+
+		#containerrr{
+			text-align: center;
 		}
 
 		header {
@@ -125,7 +133,7 @@
 			text-align: center;
 			color: #fff;
 			text-transform: uppercase;
-			font-size: 60px;
+			font-size: 4vw;
 		}
 
 		.welcome-text h1 span {
@@ -194,23 +202,54 @@
 		}
 
 		body {
-			font-family: Arial, Helvetica, sans-serif;
+			font-family: 'Times New Roman', Times, serif;
 		}
 
 		/* Set a style for all buttons */
 		button {
-			background-color: #04AA6D;
-			color: white;
-			padding: 14px 20px;
-			margin: 8px 0;
-			border: none;
-			cursor: pointer;
-			width: 100%;
+			display: inline-block;
 		}
 
-		button:hover {
-			opacity: 0.8;
+		#b1{
+			align-items: center;
+			color: rgb(0, 0, 0);
+			font-size: 15px;
+			cursor: pointer;
+			width: 100%;
+			border-radius: 10px;
+			display: block;
+			position: absolute;
+			text-align: center;
+			margin-left: 35%;
+			background-color: transparent;
 		}
+
+		#b2{
+			align-items: center;
+			color: rgb(0, 0, 0);
+			font-size: 15px;
+			cursor: pointer;
+			width: 100%;
+			border-radius: 10px;
+			display: block;
+			position: absolute;
+			text-align: center;
+			margin-left: 50%;
+			background-color: transparent;
+		}
+
+		#b1:hover {
+			opacity: 0.8;
+			background-color: #000;
+		}
+
+
+		#b2:hover {
+			opacity: 0.8;
+			background-color: #000;
+		}
+
+
 		
 .buttonn {
   display: inline-block;
@@ -356,11 +395,11 @@
 	<!-- Page content -->
 	<div id="id01" class="modal">
 
-		<form class="modal-content animate" method="post" action="/login/">
+		<form class="modal-content animate" method="post" action="/login/" style="padding: 40px; width:35%;" >
 			<div class="imgcontainer">
 				<span onclick="document.getElementById('id01').style.display='none'" class="close"
 					title="Close Modal">&times;</span>
-				<img src="/static/image/icon1.png" alt="Avatar" class="avatar" style="height: 150px; width:150px; margin-left: 150px;">
+				<img src="/static/image/icon1.png" alt="Avatar" class="avatar" style="align-items: center; height: 80px; width: 80px;">
 			</div>
 			{% csrf_token %}
 			{{form|crispy}}
@@ -378,18 +417,18 @@
 
 	<div id="id02" class="modal">
 
-		<form class="modal-content animate" method="post" action="/register/">
+		<form class="modal-content animate" method="post" action="/register/" style="padding: 40px; width:35%;">
 			<div class="imgcontainer">
 				<span onclick="document.getElementById('id02').style.display='none'" class="close"
 					title="Close Modal">&times;</span>
-				<img src="/static/image/icon1.png" alt="Avatar" class="avatar" style="height: 150px; width:150px; margin-left: 150px;">
+				<img src="/static/image/icon1.png" alt="Avatar" class="avatar" style="align-items: center; height: 80px; width: 80px;">
 			</div>
 			{% csrf_token %}
 			<legend class="border-bottom mb-3">Create an Account</legend>
 			{{register|crispy}}
 			<button name="create" , type="submit" , class="btn btn-success">Register</button>
 
-			<div class="container" style="background-color:#f1f1f1">
+			<div class="container" style="background-color:#f1f1f1; ">
 				<button type="button" onclick="document.getElementById('id02').style.display='none'"
 					class="cancelbtn">Cancel</button>
 				<span class="psw">Already have an account? <a href="#">Login here?</a></span>
@@ -417,6 +456,31 @@
 			}
 		}
 	</script>
+
+    <!-- Page content -->
+    <div class="main bg-main">
+
+      
+		<div class="row justify-content-center">
+		  <div class="col-8">
+			
+			
+			
+			<hr class="mt-0">
+			{% if messages %}
+			 {% for message in messages %}
+				<div class="alert alert-{{ message.tages }}">
+				 message 
+				</div>
+			  {% endfor %}
+			{% endif %} 
+			
+			{% block content %}
+  
+			{% endblock %}
+		  </div>
+		</div>
+	  </div>
 
 </body>
 
